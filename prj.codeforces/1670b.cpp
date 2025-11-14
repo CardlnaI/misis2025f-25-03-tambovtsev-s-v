@@ -5,7 +5,6 @@
 
 int main() {
     int t;
-    if (!(std::cin >> t)) return 0;
     while (t--) {
         int n;
         std::cin >> n;
