@@ -3,24 +3,31 @@
 #include <algorithm>
 
 int main() {
-    int n;
+    int n, t;
     std::cin >> n;
-    std::vector<int> arr(n);
-    for (int i = 0; i < n; i++) {
-        std::cin >> arr[i];
+
+    std::vector<int> posled(n);
+    std::vector<int> answer;
+
+    for (int i = n - 1; i >= 0; --i) {
+        std::cin >> t;
+        posled[i] = t;
     }
-    std::vector<int> result;
-    std::vector<bool> seen(1001, false);
-    for (int i = n - 1; i >= 0; i--) {
-        if (!seen[arr[i]]) {
-            seen[arr[i]] = true;
-            result.push_back(arr[i]);
+
+    for (int tmp : posled) {
+        if (std::find(answer.begin(), answer.end(), tmp) == answer.end()) {
+            answer.push_back(tmp);
         }
     }
-    std::reverse(result.begin(), result.end());
-    std::cout << result.size() << std::endl;
-    for (int i = 0; i < result.size(); i++) {
-        std::cout << result[i] << " ";
+
+    std::reverse(answer.begin(), answer.end());
+
+    std::cout << answer.size() << "\n";
+    for (int i = 0; i < answer.size(); ++i) {
+        if (i) std::cout << ' ';
+        std::cout << answer[i];
     }
+    std::cout << "\n";
+
     return 0;
 }
